@@ -13,7 +13,7 @@ class Main extends Component {
 
   handleDeleteFavorite = async (favoriteId) => {
     try {
-      const response = await fetch(`http://localhost:3003/favorites/${favoriteId}`, {
+      const response = await fetch(`https://music-8w2a.onrender.com/${favoriteId}`, {credentials: 'include'}, {
         method: 'DELETE',
       });
       const data = await response.json();

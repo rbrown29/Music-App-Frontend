@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   fetchPosts = () => {
-    fetch(`${baseUrl}/songs`)
+    fetch(`${baseUrl}/songs`, { credentials: 'include' })
       .then(data => data.json())
       .then(jData => {
         this.setState({ music: jData })
@@ -35,7 +35,7 @@ class App extends React.Component {
 
   handleCreate = (createdSong) => {
     fetch(
-      `${baseUrl}/songs`,
+      `${baseUrl}/songs`, { credentials: 'include' },
       {
         body: JSON.stringify({
           title: createdSong.songName,
@@ -63,7 +63,7 @@ class App extends React.Component {
 
 
   handleDelete = (id) => {
-    fetch(`${baseUrl}/songs/${id}`, { 
+    fetch(`${baseUrl}/songs/${id}`, { credentials: 'include' }, { 
       method: 'DELETE',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -88,7 +88,7 @@ class App extends React.Component {
 
   // Get all favorite songs
 fetchFavorites = () => {
-  fetch(`${baseUrl}/favorites`)
+  fetch(`${baseUrl}/favorites`, { credentials: 'include' })
     .then((data) => data.json())
     .then((jData) => {
       this.setState({ favorites: jData });
@@ -98,7 +98,7 @@ fetchFavorites = () => {
 
 // Remove a song from favorites
 removeFavorite = (id) => {
-  fetch(`${baseUrl}/favorites/${id}`, {
+  fetch(`${baseUrl}/favorites/${id}`, { credentials: 'include' }, {
     method: "DELETE",
     headers: {
       Accept: "application/json, text/plain, */*",
@@ -133,7 +133,7 @@ addToFavorites = (song) => {
     ...song,
     coverArt: song.coverArt || '' // Set the coverArt property to an empty string if it is undefined
   }
-  fetch(`${baseUrl}/favorites`, {
+  fetch(`${baseUrl}/favorites`, { credentials: 'include' }, {
     body: JSON.stringify(newFavorite),
     method: 'POST',
     headers: {
