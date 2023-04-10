@@ -4,15 +4,7 @@ import Main from './components/Main'
 import Songs from './components/Songs';
 import Side from './components/Side';
 
-// import music from './data.js'
 
-let baseUrl = '';
-
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://music-8w2a.onrender.com'
-} else {
-  baseUrl = 'https://music-8w2a.onrender.com'
-}
 
 class App extends React.Component {
   constructor(props) {
@@ -26,7 +18,7 @@ class App extends React.Component {
   }
 
   fetchPosts = () => {
-    fetch(`${baseUrl}/songs`, { credentials: 'include' })
+    fetch(`/songs`, { credentials: 'include' })
       .then(data => data.json())
       .then(jData => {
         this.setState({ music: jData })
@@ -35,7 +27,7 @@ class App extends React.Component {
 
   handleCreate = (createdSong) => {
     fetch(
-      `${baseUrl}/songs`, { credentials: 'include' },
+      `/songs`, { credentials: 'include' },
       {
         body: JSON.stringify({
           title: createdSong.songName,
@@ -63,7 +55,7 @@ class App extends React.Component {
 
 
   handleDelete = (id) => {
-    fetch(`${baseUrl}/songs/${id}`, { credentials: 'include' }, { 
+    fetch(`/songs/${id}`, { credentials: 'include' }, { 
       method: 'DELETE',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -88,7 +80,7 @@ class App extends React.Component {
 
   // Get all favorite songs
 fetchFavorites = () => {
-  fetch(`${baseUrl}/favorites`, { credentials: 'include' })
+  fetch(`/favorites`, { credentials: 'include' })
     .then((data) => data.json())
     .then((jData) => {
       this.setState({ favorites: jData });
@@ -98,7 +90,7 @@ fetchFavorites = () => {
 
 // Remove a song from favorites
 removeFavorite = (id) => {
-  fetch(`${baseUrl}/favorites/${id}`, { credentials: 'include' }, {
+  fetch(`/favorites/${id}`, { credentials: 'include' }, {
     method: "DELETE",
     headers: {
       Accept: "application/json, text/plain, */*",
@@ -133,7 +125,7 @@ addToFavorites = (song) => {
     ...song,
     coverArt: song.coverArt || '' // Set the coverArt property to an empty string if it is undefined
   }
-  fetch(`${baseUrl}/favorites`, { credentials: 'include' }, {
+  fetch(`/favorites`, { credentials: 'include' }, {
     body: JSON.stringify(newFavorite),
     method: 'POST',
     headers: {
