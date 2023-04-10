@@ -9,9 +9,9 @@ import Side from './components/Side';
 let baseUrl = '';
 
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://music-8w2a.onrender.com'
+  baseUrl = "'https://music-8w2a.onrender.com', {mode: 'cors'}"
 } else {
-  baseUrl = 'https://music-8w2a.onrender.com'
+  baseUrl = "'https://music-8w2a.onrender.com', {mode: 'cors'}"
 }
 
 class App extends React.Component {
