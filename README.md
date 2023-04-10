@@ -1,4 +1,4 @@
-# Music-App-Backend
+# Music-App-Frontend
 ### Authors: Richard Brown and Gianni Nola
 
 ### Updated React Frontend and Added Node Backend by Richard Brown
