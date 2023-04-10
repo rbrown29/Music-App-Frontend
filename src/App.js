@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './components/Header'
 import Main from './components/Main'
-import Songs from './components/Songs';
 import Side from './components/Side';
 
 // import music from './data.js'
@@ -11,7 +10,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'https://cors-anywhere.herokuapp.com/https://music-8w2a.onrender.com'
 } else {
-  baseUrl = 'https://music-8w2a.onrender.com'
+  baseUrl = 'https://cors-anywhere.herokuapp.com/https://music-8w2a.onrender.com'
 }
 
 class App extends React.Component {
