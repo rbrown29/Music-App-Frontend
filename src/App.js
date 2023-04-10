@@ -4,7 +4,15 @@ import Main from './components/Main'
 import Songs from './components/Songs';
 import Side from './components/Side';
 
+// import music from './data.js'
 
+let baseUrl = '';
+
+if (process.env.NODE_ENV === 'development') {
+  baseUrl = 'https://cors-anywhere.herokuapp.com/https://music-8w2a.onrender.com'
+} else {
+  baseUrl = 'https://music-8w2a.onrender.com'
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +26,7 @@ class App extends React.Component {
   }
 
   fetchPosts = () => {
-    fetch(`/songs`, { credentials: 'include' })
+    fetch(`${baseUrl}/songs`,)
       .then(data => data.json())
       .then(jData => {
         this.setState({ music: jData })
@@ -27,7 +35,7 @@ class App extends React.Component {
 
   handleCreate = (createdSong) => {
     fetch(
-      `/songs`, { credentials: 'include' },
+      `${baseUrl}/songs`,
       {
         body: JSON.stringify({
           title: createdSong.songName,
@@ -55,7 +63,7 @@ class App extends React.Component {
 
 
   handleDelete = (id) => {
-    fetch(`/songs/${id}`, { credentials: 'include' }, { 
+    fetch(`${baseUrl}/songs/${id}`, { 
       method: 'DELETE',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -80,7 +88,7 @@ class App extends React.Component {
 
   // Get all favorite songs
 fetchFavorites = () => {
-  fetch(`/favorites`, { credentials: 'include' })
+  fetch(`${baseUrl}/favorites`, )
     .then((data) => data.json())
     .then((jData) => {
       this.setState({ favorites: jData });
@@ -90,7 +98,7 @@ fetchFavorites = () => {
 
 // Remove a song from favorites
 removeFavorite = (id) => {
-  fetch(`/favorites/${id}`, { credentials: 'include' }, {
+  fetch(`${baseUrl}/favorites/${id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json, text/plain, */*",
@@ -125,7 +133,7 @@ addToFavorites = (song) => {
     ...song,
     coverArt: song.coverArt || '' // Set the coverArt property to an empty string if it is undefined
   }
-  fetch(`/favorites`, { credentials: 'include' }, {
+  fetch(`${baseUrl}/favorites`,  {
     body: JSON.stringify(newFavorite),
     method: 'POST',
     headers: {
