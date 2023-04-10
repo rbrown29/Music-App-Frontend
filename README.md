@@ -44,6 +44,6 @@
 1. In the terminal, run: `npm start` on the Frontend and `npm start` on the Backend
 2. Browse to the frontend at [localhost:3000](http://localhost:3000) and the backend at [localhost:3003/songs](http://localhost:3003/songs).
 
-![Music](Cover1.png.png?raw=true{:height="50px"width="50px"})
+![Music](./Cover1.png.png?raw=true{:height="50px"width="50px"})
 ![Music](/cover2.png.png?raw=true{:height="50px"width="50px"})
 ![Music](/cover3.png.png?raw=true{:height="50px"width="50px"})
