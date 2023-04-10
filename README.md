@@ -3,8 +3,6 @@
 
 ### Updated React Frontend and Added Node Backend by Richard Brown
 
-### Live Site coming soon
-
 ### Live Site Link
 <a href="https://musicapp-3xgy.onrender.com/">Frontend</a><br>
 <a href="https://music-8w2a.onrender.com/songs">Backend/Songs</a><br>
