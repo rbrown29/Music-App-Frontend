@@ -8,9 +8,9 @@ import Side from './components/Side';
 let baseUrl = '';
 
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/https://music-8w2a.onrender.com'
+  baseUrl = 'http://localhost:3003/proxy/https://music-8w2a.onrender.com';
 } else {
-  baseUrl = 'https://cors-anywhere.herokuapp.com/https://music-8w2a.onrender.com'
+  baseUrl = 'https://musicapp-3xgy.onrender.com/proxy/https://music-8w2a.onrender.com';
 }
 
 class App extends React.Component {
