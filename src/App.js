@@ -10,7 +10,7 @@ let baseUrl = '';
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://localhost:3003/proxy/https://music-8w2a.onrender.com';
 } else {
-  baseUrl = 'https://musicapp-3xgy.onrender.com/proxy/https://music-8w2a.onrender.com';
+  baseUrl = 'https://music-8w2a.onrender.com';
 }
 
 class App extends React.Component {
