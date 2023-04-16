@@ -5,13 +5,7 @@ import Side from './components/Side';
 
 // import music from './data.js'
 
-let baseUrl = '';
-
-if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'http://localhost:3003/proxy/https://music-8w2a.onrender.com';
-} else {
-  baseUrl = 'https://music-8w2a.onrender.com';
-}
+let baseUrl = 'https://music-8w2a.onrender.com';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,9 +48,9 @@ class App extends React.Component {
       }
       )
       .then(jsonedSong => {
-        this.setState({
-          music: jsonedSong
-        })
+        this.setState((prevState) => ({
+          music: [jsonedSong, ...prevState.music],
+        }));
       }).catch(error => console.log(error))
   }
 
@@ -71,7 +65,7 @@ class App extends React.Component {
     })
       .then(json => {
         this.setState(prevState => {
-          const music = prevState.music.filter(music => music.id !== id)
+          const music = prevState.music.filter(music => music._id !== id)
           return { music }
         })
       })
@@ -106,9 +100,7 @@ removeFavorite = (id) => {
   })
     .then((json) => {
       this.setState((prevState) => {
-        const favorites = prevState.favorites.filter(
-          (favorite) => favorite.id !== id
-        );
+        const favorites = prevState.favorites.filter(favorite => favorite._id !== id);
         return { favorites };
       });
     })
@@ -181,7 +173,7 @@ updateFavorites = (updatedFavorites) => {
           toggleFavs={this.toggleFavs}
           handleDelete={this.handleDelete}
           handleDeleteFavorite={this.handleDeleteFavorite}
-          updateFavorites={this.updateFavorites} // Updated prop
+          updateFavorites={this.updateFavorites}
         />
         <Side
           favorites={this.state.favorites}
@@ -192,6 +184,7 @@ updateFavorites = (updatedFavorites) => {
           coverArt={this.props.coverArt}
           handleDeleteFavorite={this.handleDeleteFavorite}
           updateFavorites={this.updateFavorites}
+          fetchFavorites={this.fetchFavorites}
         />
 
 

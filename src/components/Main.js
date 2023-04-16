@@ -6,23 +6,36 @@ import Songlist from './Songlist'
 class Main extends Component {
   constructor(props) {
     super(props);
+    this.handleDeleteFavorite = this.handleDeleteFavorite.bind(this);
     this.state = {
       showFavs: false
     }
   }
 
   handleDeleteFavorite = async (favoriteId) => {
+    console.log("Deleting favorite with ID:", favoriteId);
     try {
-      const response = await fetch(`https://music-8w2a.onrender.com/${favoriteId}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `https://music-8w2a.onrender.com/favorites/${favoriteId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
-      console.log('Favorite deleted:', data);
-      this.props.fetchPosts(); // Update the favorites list after deleting
+      console.log("Favorite deleted:", data);
+      const updatedFavorites = this.props.favorites.filter(
+        (fav) => fav._id !== favoriteId
+      );
+      this.props.updateFavorites(updatedFavorites); // Pass the updated favorites list
     } catch (error) {
-      console.error('Error deleting favorite:', error);
+      console.error("Error deleting favorite:", error);
     }
   };
+  
   
 
   toggleFavs = () => {

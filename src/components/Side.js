@@ -60,18 +60,22 @@ class Side extends Component {
     this.props.updateFavorites(updatedFavorites);
   };
   
-  
+  componentDidUpdate(prevProps) {
+    if (prevProps.favorites !== this.props.favorites) {
+      console.log('Favorites updated:', this.props.favorites);
+    }
+  }
   
   
 
   render() {
-    console.log(this.props.favorites);
+    console.log('Favorites in render:', this.props.favorites);
     return (
       <div className={this.props.showFavs ? 'show-side' : 'hide-side'}>
         <h2>Your Favorites</h2>
         <ul>
-          {this.props.favorites.map((favSong, index) => (
-            <li key={index}>
+          {this.props.favorites && this.props.favorites.map((favSong, index) => (
+            <li key={favSong._id}>
               <img src={favSong.coverArt || this.props.coverArt} />
               {favSong.songName}
               <br />
