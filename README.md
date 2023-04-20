@@ -1,6 +1,8 @@
 # Music-App-Frontend
 ### Authors: Richard Brown and Gianni Nola
 
+![vinyl](https://user-images.githubusercontent.com/53094729/233312182-baae91bc-7ee7-44e2-b13c-eca822721fea.gif)
+
 ### Updated React Frontend and Added Node Backend by Richard Brown
 
 ### Live Site Link
